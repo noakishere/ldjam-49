@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueManager : MonoBehaviour
+public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 {
+
     // Dialogue Stuff
     [SerializeField] private DialogueSO currentDialogueList;
     public Dialogue currentDialogue;
@@ -11,32 +12,32 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float typingSpeed;
 
     //[SerializeField] private DialogueStates currentState;
-    
-   void Start()
+
+   private void Start() 
    {
-        Debug.Log(currentDialogueList);
-
-       // if(currentDialogueList != null)
-         //   ProcessDialogue(currentDialogueList.Dialogues[0]);
+       Debug.Log(currentDialogueList);
    }
-
-
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && currentDialogueList != null)
+        if (Input.GetKeyDown(KeyCode.S))
         {
             currentDialogue = currentDialogueList.Dialogues[0];
 
-            ProcessDialogue(currentDialogue);
+            ProcessDialogueToUI(currentDialogue);
         }
     }
     
 
-    public void ProcessDialogue(Dialogue dialogue)
+    public void ProcessDialogueToUI(Dialogue dialogue)
     {
+        // This needs to be cleaned. Best thing is to move all the ui stuff to one function in UIManager i think.
         Sprite avatar = dialogue.Character.Avatar;
-        FindObjectOfType<UIManager>().SetAvatar(avatar);
+        UIManager.Instance.SetAvatar(avatar);
+        UIManager.Instance.SetDialogue(dialogue);
+        UIManager.Instance.SetName(dialogue);
+        UIManager.Instance.SetJob(dialogue);
+        UIManager.Instance.SetMood(dialogue);
     }
 }
 

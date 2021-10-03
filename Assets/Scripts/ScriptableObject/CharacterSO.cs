@@ -9,7 +9,7 @@ public class CharacterSO : ScriptableObject
     [SerializeField] private string charName;
     public string Name 
     { 
-        get { return name; } 
+        get { return charName; } 
     }
 
     [SerializeField] private string job;

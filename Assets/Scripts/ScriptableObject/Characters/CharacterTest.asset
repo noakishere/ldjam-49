@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61a171bbb899dfc48ad6880d1b30fd18, type: 3}
   m_Name: CharacterTest
   m_EditorClassIdentifier: 
-  charName: Bbabes
-  job: 
-  initialMood: 
+  charName: Babr Ali
+  job: Najjar
+  initialMood: Happy
   avatar: {fileID: 21300000, guid: bfcd6c59a567df54eae245faa606def6, type: 3}

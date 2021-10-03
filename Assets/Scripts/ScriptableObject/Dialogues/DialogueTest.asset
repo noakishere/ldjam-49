@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: DialogueTest
   m_EditorClassIdentifier: 
   dialogues:
-  - text: 
+  - text: '
+
+      This is a test text
+
+
+      Do you know about me?'
     character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
     options: []

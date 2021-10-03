@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7cb071d4aa9b84b8f92ff8154a2aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentDialogueList: {fileID: 0}
+  currentDialogueList: {fileID: 11400000, guid: d28999bd6f5d61e4ca44eb29bc66b5e2, type: 2}
   currentDialogue:
     text: 
     character: {fileID: 0}
@@ -1076,7 +1076,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00007724762, y: 0.0009}
+  m_AnchoredPosition: {x: 15.630983, y: 0.0009}
   m_SizeDelta: {x: -15.631, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &392309209
@@ -1329,7 +1329,6 @@ RectTransform:
   - {fileID: 826460956}
   - {fileID: 719779848}
   - {fileID: 286553797}
-  - {fileID: 1251736634}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2497,7 +2496,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1251736634}
   m_Father: {fileID: 1454917729}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2569,16 +2569,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251736633}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 619952340}
-  m_RootOrder: 3
+  m_Father: {fileID: 1240454493}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -806, y: 584}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 25}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251736635
@@ -2603,8 +2603,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Chapter: 5'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bec444de69b4b884e9bab74a39e89b5d, type: 2}
-  m_sharedMaterial: {fileID: -5440576135331596595, guid: bec444de69b4b884e9bab74a39e89b5d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 776b38463339a904ab5ad94e551e75a4, type: 2}
+  m_sharedMaterial: {fileID: -7286586017863738227, guid: 776b38463339a904ab5ad94e551e75a4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2623,18 +2623,18 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
+  m_TextStyleHashCode: 93368250
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 34.4
+  m_fontSizeBase: 34.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
