@@ -24,21 +24,11 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         {
             currentDialogue = currentDialogueList.Dialogues[0];
 
-            ProcessDialogueToUI(currentDialogue);
+            UIManager.Instance.ProcessDialogueToUI(currentDialogue);
         }
     }
-    
 
-    public void ProcessDialogueToUI(Dialogue dialogue)
-    {
-        // This needs to be cleaned. Best thing is to move all the ui stuff to one function in UIManager i think.
-        Sprite avatar = dialogue.Character.Avatar;
-        UIManager.Instance.SetAvatar(avatar);
-        UIManager.Instance.SetDialogue(dialogue);
-        UIManager.Instance.SetName(dialogue);
-        UIManager.Instance.SetJob(dialogue);
-        UIManager.Instance.SetMood(dialogue);
-    }
+    
 }
 
 

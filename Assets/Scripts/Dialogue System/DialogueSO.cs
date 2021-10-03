@@ -12,10 +12,4 @@ public class DialogueSO : ScriptableObject {
     { 
         get { return dialogues; } 
     }
-
-    void Awake()
-    {
-        Debug.Log("I'm Up!");
-
-    }
 }

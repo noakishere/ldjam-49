@@ -21,3 +21,22 @@ MonoBehaviour:
       Do you know about me?'
     character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
     options: []
+  - text: '
+
+      This is a test text2
+
+
+      Do you know about me?'
+    character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
+    options:
+    - text: Option 1
+      affectModifier: 353
+      amount: 535235
+  - text: '
+
+      This is a test text4
+
+
+      Do you know about me?'
+    character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
+    options: []

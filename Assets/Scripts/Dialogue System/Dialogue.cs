@@ -21,4 +21,8 @@ public class Dialogue
 
     [Header("If not required, leave empty")]
     [SerializeField] private Option[] options;
+    public Option[] Options
+    {
+        get { return options; }
+    }
 }

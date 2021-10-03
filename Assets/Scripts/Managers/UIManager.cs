@@ -11,27 +11,65 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private TMP_Text moodContainer;
     [SerializeField] private TMP_Text jobContainer;
     [SerializeField] private Image avatarContainer;
+    [SerializeField] private GameObject optionsContainer;
+    [SerializeField] private GameObject continueButtonContainer;
 
-    public void SetAvatar(Sprite avatar)
+    private void Start() 
     {
-        avatarContainer.sprite = avatar;
-    }
-    public void SetDialogue(Dialogue dialogue)
-    {
-        dialogueContainer.text = dialogue.Text;
+
     }
 
-    public void SetMood(Dialogue dialogue)
+    private Dialogue currentProcessDialogue;
+
+    public void ProcessDialogueToUI(Dialogue dialogue)
     {
-        moodContainer.text = $"Mood: {dialogue.Character.InitialMood}";
+        currentProcessDialogue = dialogue;
+        
+        ProcessOptions();
+        SetAvatar();
+        SetDialogue();
+        SetName();
+        SetJob();
+        SetMood();
     }
-    public void SetName(Dialogue dialogue)
+
+    public void SetAvatar()
     {
-        nameContainer.text = $"Name: {dialogue.Character.Name}";
+        avatarContainer.sprite = currentProcessDialogue.Character.Avatar;
     }
-    public void SetJob(Dialogue dialogue)
+    public void SetDialogue()
     {
-        jobContainer.text = $"Mood: {dialogue.Character.Job}";
+        dialogueContainer.text = currentProcessDialogue.Text;
+    }
+
+    public void SetMood()
+    {
+        moodContainer.text = $"Mood: {currentProcessDialogue.Character.InitialMood}";
+    }
+    public void SetName()
+    {
+        nameContainer.text = $"Name: {currentProcessDialogue.Character.Name}";
+    }
+    public void SetJob()
+    {
+        jobContainer.text = $"Job: {currentProcessDialogue.Character.Job}";
+    }
+
+    public void ProcessOptions()
+    {
+        if(currentProcessDialogue.Options.Length != 0)
+        {
+            Debug.Log($"Not empty options dude {currentProcessDialogue.Options.Length}");
+            optionsContainer.SetActive(true);
+            continueButtonContainer.SetActive(false);
+            // do something
+        }
+        else
+        {
+            Debug.Log($"It's empty {currentProcessDialogue.Options.Length}");
+            optionsContainer.SetActive(false);
+            continueButtonContainer.SetActive(true);
+        }
     }
 
 }
