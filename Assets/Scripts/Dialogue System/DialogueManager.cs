@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 {
-
     // Dialogue Stuff
+    [Header("Dialogue Section")]
     [SerializeField] private DialogueSO currentDialogueList;
     public Dialogue currentDialogue;
+    
+    [Tooltip("Must never be more than the options' length")]
+    [SerializeField] private int dialogueIndex;
 
+    [Header("Modify Dialogue State")]
     [SerializeField] private DialogueStates currentState;
     public DialogueStates CurrentState
     {
@@ -18,15 +22,15 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
     {
         currentState = state;
     }
+    
 
-    [SerializeField] private int dialogueIndex;
-
-   private void Start() 
-   {
+    private void Start() 
+    {
        dialogueIndex = 0;
        currentState = DialogueStates.Waiting;
        Debug.Log(currentDialogueList);
-   }
+    }
+
 
     void Update()
     {
@@ -52,7 +56,6 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         UIManager.Instance.ProcessDialogueToUI(currentDialogue);
         currentState = DialogueStates.Talking;
     }
-    
 }
 
 

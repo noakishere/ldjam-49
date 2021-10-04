@@ -18,4 +18,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     }
 
 
+    public void ProcessButtonFunction(Option option)
+    {
+        
+    }
+
+
 }

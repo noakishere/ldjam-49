@@ -38,13 +38,15 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         currentProcessDialogue = dialogue;
         
-        ProcessOptions();
+        // ProcessOptions();
         SetAvatar();
         SetDialogue();
         SetName();
         SetJob();
         SetMood();
     }
+
+#region Character Details UI Set Methods
 
     public void SetAvatar()
     {
@@ -53,6 +55,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     public void SetDialogue()
     {
         dialogueContainer.text = "";
+
+        // To prevent showing options before the text is done.
+        TurnOffContinueButton();
+        TurnOffAllOptions();
+
         StartCoroutine(AutoTypeText());
     }
 
@@ -69,6 +76,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         jobContainer.text = $"Job: {currentProcessDialogue.Character.Job}";
     }
 
+#endregion
+
     public void ProcessOptions()
     {
         if(currentProcessDialogue.Options.Length != 0)
@@ -80,19 +89,16 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             // Disables the unusable option buttons
             if (optionsLength < optionsContainer.transform.childCount)
             {
-                for(int i = optionsLength; i < optionsContainer.transform.childCount; i++)
-                {
-                    optionsContainer.transform.GetChild(i).gameObject.SetActive(false);
-                }
+                // TurnOnOptions() is because if in a previous case, options were totally off, we turn them all back on and then turn off the unwanted ones.. Iknow it's sloppy
+                // Will have to rework it later.
+                TurnOnOptions(); 
+                TurnOffOptions();
             }
 
             // Enables them if they were disabled
             else
             {
-                for(int i = 0; i < optionsContainer.transform.childCount; i++)
-                {
-                    optionsContainer.transform.GetChild(i).gameObject.SetActive(true);
-                }
+                TurnOnOptions();
             }
 
             for(int i = 0; i < optionsLength; i++) // To adjust the options text
@@ -123,7 +129,37 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
     }
 
+    public void TurnOnOptions()
+    {
+        for(int i = 0; i < optionsContainer.transform.childCount; i++)
+        {
+            optionsContainer.transform.GetChild(i).gameObject.SetActive(true);
+        }
+    }
 
+    public void TurnOffOptions()
+    {
+        Debug.Log($"Options number after being disabled before?  {optionsContainer.transform.childCount}");
+        for(int i = currentProcessDialogue.Options.Length; i < optionsContainer.transform.childCount; i++)
+        {
+            optionsContainer.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public void TurnOffAllOptions()
+    {
+        for(int i = 0; i < optionsContainer.transform.childCount; i++)
+        {
+            optionsContainer.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public void TurnOffContinueButton()
+    {
+        continueButtonContainer.SetActive(false);
+    }
+
+#region Player UI Details Set Methods
     public void SetGold(int amount)
     {
         goldAmountContainer.text = $"Gold: {amount}";
@@ -144,10 +180,10 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         clothAmountContainer.text = $"Cloth: {amount}";
     }
-
+#endregion
 
     private IEnumerator AutoTypeText()
-    {
+    {      
         foreach(char letter in currentProcessDialogue.Text)
         {
             // If the player wants to complete the text bro and don't wanna wait for shit
@@ -161,12 +197,12 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             yield return new WaitForSeconds(autoTypeSpeed * Time.deltaTime);
         }
 
+        // To prevent the spam kids
         yield return new WaitForSeconds(waitBeforeNextDialogueSpeed * Time.deltaTime);
         DialogueManager.Instance.SetDialogueState(DialogueStates.Waiting);
+        ProcessOptions();
         
         // TODO: MID TYPING INTERRUPT WILL FUCK UP THE DIALOGUE SHOWN
-        yield return null;
+        // It's better than now, but can be better you know. GE!
     }
-
-
 }

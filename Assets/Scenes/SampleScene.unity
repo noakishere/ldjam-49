@@ -1405,7 +1405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000052452087, y: 0.0009}
+  m_AnchoredPosition: {x: -0.000056266785, y: 0.0009}
   m_SizeDelta: {x: -15.631, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &392309209
@@ -2747,7 +2747,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoTypeSpeed: 2
-  waitBeforeNextDialogueSpeed: 1
+  waitBeforeNextDialogueSpeed: 0.5
   dialogueContainer: {fileID: 1383353220}
   nameContainer: {fileID: 1981277323}
   moodContainer: {fileID: 90641714}
@@ -3489,7 +3489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1280793368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3497,7 +3497,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1280793367}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -3569,8 +3569,8 @@ MonoBehaviour:
     text: 
     character: {fileID: 0}
     options: []
-  currentState: 0
   dialogueIndex: 0
+  currentState: 1
 --- !u!1 &1383353218
 GameObject:
   m_ObjectHideFlags: 0
