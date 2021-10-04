@@ -79,10 +79,18 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             for(int i = 0; i < optionsLength; i++) // To adjust the options text
             {
                 Debug.Log(optionsContainer.transform.childCount);
+                
+                // To change the button's TMP Text to option's initial name
                 string optionText = currentProcessDialogue.Options[i].Text;
                 var toBeChanged = optionsContainer.transform.GetChild(i).GetComponentInChildren<TMP_Text>();
 
                 toBeChanged.text = optionText;
+
+                // To add a function to button's onClick
+                Button btn = optionsContainer.transform.GetChild(i).GetComponent<Button>();
+                int amountWeNeed = (int)currentProcessDialogue.Options[i].ModifierChangeAmount;
+                btn.onClick.AddListener(delegate{GameManager.Instance.GoldChange(amountWeNeed);});
+                // btn.onClick.AddListener(delegate{SetGold(amountWeNeed);});
             }
             optionsContainer.SetActive(true);
             continueButtonContainer.SetActive(false);
