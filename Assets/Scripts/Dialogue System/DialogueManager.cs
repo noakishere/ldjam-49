@@ -11,10 +11,14 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 
     [SerializeField] private float typingSpeed;
 
-    //[SerializeField] private DialogueStates currentState;
+    [SerializeField] private DialogueStates currentState;
+
+    private int dialogueIndex;
 
    private void Start() 
    {
+       dialogueIndex = 0;
+       currentState = DialogueStates.Waiting;
        Debug.Log(currentDialogueList);
    }
 
@@ -22,8 +26,9 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
     {
         if (Input.GetKeyDown(KeyCode.S))
         {
-            currentDialogue = currentDialogueList.Dialogues[0];
-
+            // currentState = DialogueStates.Talking;
+            currentDialogue = currentDialogueList.Dialogues[dialogueIndex];
+            dialogueIndex++;
             UIManager.Instance.ProcessDialogueToUI(currentDialogue);
         }
     }

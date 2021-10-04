@@ -6,6 +6,8 @@ using TMPro;
 
 public class UIManager : SingletonMonoBehaviour<UIManager>
 {
+
+    [Header("Character UI Section")]
     [SerializeField] private TMP_Text dialogueContainer;
     [SerializeField] private TMP_Text nameContainer;
     [SerializeField] private TMP_Text moodContainer;
@@ -13,6 +15,9 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private Image avatarContainer;
     [SerializeField] private GameObject optionsContainer;
     [SerializeField] private GameObject continueButtonContainer;
+
+    [Header("Player UI Section")]
+    [SerializeField] private TMP_Text goldAmountContainer;
 
     private void Start() 
     {
@@ -60,6 +65,25 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         if(currentProcessDialogue.Options.Length != 0)
         {
             Debug.Log($"Not empty options dude {currentProcessDialogue.Options.Length}");
+
+            int optionsLength = currentProcessDialogue.Options.Length;
+
+            if (optionsLength < optionsContainer.transform.childCount)
+            {
+                for(int i = optionsLength; i < optionsContainer.transform.childCount; i++)
+                {
+                    optionsContainer.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+
+            for(int i = 0; i < optionsLength; i++) // To adjust the options text
+            {
+                Debug.Log(optionsContainer.transform.childCount);
+                string optionText = currentProcessDialogue.Options[i].Text;
+                var toBeChanged = optionsContainer.transform.GetChild(i).GetComponentInChildren<TMP_Text>();
+
+                toBeChanged.text = optionText;
+            }
             optionsContainer.SetActive(true);
             continueButtonContainer.SetActive(false);
             // do something
@@ -70,6 +94,12 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             optionsContainer.SetActive(false);
             continueButtonContainer.SetActive(true);
         }
+    }
+
+
+    public void SetGold(int amount)
+    {
+        goldAmountContainer.text = $"Gold: {amount}";
     }
 
 }

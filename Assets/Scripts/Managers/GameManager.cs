@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    
-
-    void Start()
+    private int goldAmt;
+    public int GoldAmount
     {
-        
+        get { return goldAmt; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GoldChange(int amount)
     {
-        
+        goldAmt += amount;
+        UIManager.Instance.SetGold(goldAmt);
     }
+
+
 }

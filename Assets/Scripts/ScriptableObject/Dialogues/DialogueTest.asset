@@ -20,7 +20,16 @@ MonoBehaviour:
 
       Do you know about me?'
     character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
-    options: []
+    options:
+    - text: 1 Text
+      affectModifier: 
+      amount: 0
+    - text: 2
+      affectModifier: 
+      amount: 0
+    - text: 3
+      affectModifier: 
+      amount: 0
   - text: '
 
       This is a test text2

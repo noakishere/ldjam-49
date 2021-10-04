@@ -24,4 +24,9 @@ public class Option
     {
         get { return amount; }
     }
+
+    private void OnChoose()
+    {
+        GameEvents.Instance.GoldChangeTrigger();
+    }
 }
