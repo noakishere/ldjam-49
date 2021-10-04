@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
-    private int goldAmt;
+
+    [SerializeField] private int goldAmt;
     public int GoldAmount
     {
         get { return goldAmt; }

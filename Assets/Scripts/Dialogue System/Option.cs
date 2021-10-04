@@ -25,6 +25,12 @@ public class Option
         get { return amount; }
     }
 
+    [SerializeField] private PassableModifiers[] passableModifiers;
+    public PassableModifiers[] PassableModifiers
+    {
+        get { return passableModifiers; }
+    }
+
     private void OnChoose()
     {
         GameEvents.Instance.GoldChangeTrigger();

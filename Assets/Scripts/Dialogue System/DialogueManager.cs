@@ -9,11 +9,17 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
     [SerializeField] private DialogueSO currentDialogueList;
     public Dialogue currentDialogue;
 
-    [SerializeField] private float typingSpeed;
-
     [SerializeField] private DialogueStates currentState;
+    public DialogueStates CurrentState
+    {
+        get { return currentState; }
+    }
+    public void SetDialogueState(DialogueStates state)
+    {
+        currentState = state;
+    }
 
-    private int dialogueIndex;
+    [SerializeField] private int dialogueIndex;
 
    private void Start() 
    {
@@ -24,15 +30,28 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.S) && currentState == DialogueStates.Waiting)
         {
-            // currentState = DialogueStates.Talking;
-            currentDialogue = currentDialogueList.Dialogues[dialogueIndex];
-            dialogueIndex++;
-            UIManager.Instance.ProcessDialogueToUI(currentDialogue);
+            // ONLY FOR TESTING PURPOSES, THIS WILL NEED TO BE CLEANED AFTER
+            if(dialogueIndex == currentDialogueList.Dialogues.Count)
+            {
+                dialogueIndex = 0;
+                PassDialogueToUI();
+            }
+            else
+            {
+                PassDialogueToUI();
+            }
         }
     }
 
+    public void PassDialogueToUI()
+    {
+        currentDialogue = currentDialogueList.Dialogues[dialogueIndex];
+        dialogueIndex++;
+        UIManager.Instance.ProcessDialogueToUI(currentDialogue);
+        currentState = DialogueStates.Talking;
+    }
     
 }
 

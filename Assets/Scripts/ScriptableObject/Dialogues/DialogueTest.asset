@@ -15,21 +15,38 @@ MonoBehaviour:
   dialogues:
   - text: '
 
-      This is a test text
+      1This is a test text
 
 
-      Do you know about me?'
+      Do you know about me?
+
+      1This
+      is a test text
+
+
+      Do you know about me?
+
+      1This is a test text
+
+
+      Do
+      you know about me?'
     character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
     options:
     - text: 1 Text
       affectModifier: 
       amount: 25
+      passableModifiers:
+      - modifierName: 
+        modifierAmount: 0
     - text: 2
       affectModifier: 
       amount: 5
+      passableModifiers: []
     - text: 3
       affectModifier: 
       amount: 5
+      passableModifiers: []
   - text: '
 
       This is a test text2
@@ -41,6 +58,11 @@ MonoBehaviour:
     - text: Option 1
       affectModifier: 353
       amount: 535235
+      passableModifiers: []
+    - text: Option 2
+      affectModifier: 353
+      amount: 535235
+      passableModifiers: []
   - text: '
 
       This is a test text4

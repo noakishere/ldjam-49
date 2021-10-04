@@ -7,6 +7,10 @@ using TMPro;
 public class UIManager : SingletonMonoBehaviour<UIManager>
 {
 
+    [Header("Dialogue Type Section")]
+    [SerializeField] private float autoTypeSpeed;
+    [SerializeField] private float waitBeforeNextDialogueSpeed;
+
     [Header("Character UI Section")]
     [SerializeField] private TMP_Text dialogueContainer;
     [SerializeField] private TMP_Text nameContainer;
@@ -18,6 +22,10 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     [Header("Player UI Section")]
     [SerializeField] private TMP_Text goldAmountContainer;
+    [SerializeField] private TMP_Text woodAmountContainer;
+    [SerializeField] private TMP_Text clothAmountContainer;
+    [SerializeField] private TMP_Text meatAmountContainer;
+    [SerializeField] private TMP_Text villageMoodAmountContainer;
 
     private void Start() 
     {
@@ -44,7 +52,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     }
     public void SetDialogue()
     {
-        dialogueContainer.text = currentProcessDialogue.Text;
+        dialogueContainer.text = "";
+        StartCoroutine(AutoTypeText());
     }
 
     public void SetMood()
@@ -68,11 +77,21 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
             int optionsLength = currentProcessDialogue.Options.Length;
 
+            // Disables the unusable option buttons
             if (optionsLength < optionsContainer.transform.childCount)
             {
                 for(int i = optionsLength; i < optionsContainer.transform.childCount; i++)
                 {
                     optionsContainer.transform.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+
+            // Enables them if they were disabled
+            else
+            {
+                for(int i = 0; i < optionsContainer.transform.childCount; i++)
+                {
+                    optionsContainer.transform.GetChild(i).gameObject.SetActive(true);
                 }
             }
 
@@ -87,10 +106,10 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
                 toBeChanged.text = optionText;
 
                 // To add a function to button's onClick
+                /** MUST BE REWORKED IN CASE MODIFIER IS EMPTY **/
                 Button btn = optionsContainer.transform.GetChild(i).GetComponent<Button>();
                 int amountWeNeed = (int)currentProcessDialogue.Options[i].ModifierChangeAmount;
                 btn.onClick.AddListener(delegate{GameManager.Instance.GoldChange(amountWeNeed);});
-                // btn.onClick.AddListener(delegate{SetGold(amountWeNeed);});
             }
             optionsContainer.SetActive(true);
             continueButtonContainer.SetActive(false);
@@ -109,5 +128,45 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         goldAmountContainer.text = $"Gold: {amount}";
     }
+    public void SetVillageMood(int amount)
+    {
+        villageMoodAmountContainer.text = $"Village Mood: {amount}";
+    }
+    public void SetWood(int amount)
+    {
+        woodAmountContainer.text = $"Wood: {amount}";
+    }
+    public void SetMeat(int amount)
+    {
+        meatAmountContainer.text = $"Meat: {amount}";
+    }
+    public void SetCloth(int amount)
+    {
+        clothAmountContainer.text = $"Cloth: {amount}";
+    }
+
+
+    private IEnumerator AutoTypeText()
+    {
+        foreach(char letter in currentProcessDialogue.Text)
+        {
+            // If the player wants to complete the text bro and don't wanna wait for shit
+            if(Input.GetKeyDown(KeyCode.S) && DialogueManager.Instance.CurrentState == DialogueStates.Talking)
+            {
+                dialogueContainer.text = currentProcessDialogue.Text;
+                DialogueManager.Instance.SetDialogueState(DialogueStates.Waiting);
+                break; // this doesn't seem to always work?
+            }
+            dialogueContainer.text += letter;
+            yield return new WaitForSeconds(autoTypeSpeed * Time.deltaTime);
+        }
+
+        yield return new WaitForSeconds(waitBeforeNextDialogueSpeed * Time.deltaTime);
+        DialogueManager.Instance.SetDialogueState(DialogueStates.Waiting);
+        
+        // TODO: MID TYPING INTERRUPT WILL FUCK UP THE DIALOGUE SHOWN
+        yield return null;
+    }
+
 
 }
