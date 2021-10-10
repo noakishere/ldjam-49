@@ -33,6 +33,7 @@ public class Option
 
     private void OnChoose()
     {
+        Debug.Log($"I got chosen!");
         GameEvents.Instance.GoldChangeTrigger();
     }
 }

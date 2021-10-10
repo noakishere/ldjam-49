@@ -20,16 +20,16 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
     }
     public void SetDialogueState(DialogueStates state)
     {
-        Debug.Log("Hello from set dialogue");
         currentState = state;
     }
-    
 
     private void Start() 
     {
-       dialogueIndex = 0; 
-       currentState = DialogueStates.Waiting;
-       Debug.Log(currentDialogueList);
+        // Dictionary<string, int> gameVariables = new Dictionary<string, int>();
+        // gameVariables = new List<GameVariable>();
+        dialogueIndex = 0; 
+        currentState = DialogueStates.Waiting;
+        Debug.Log(currentDialogueList);
     }
 
 
@@ -59,6 +59,11 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         // We don't really need states if we change text without autotype.. -> to fix
         // Debug.Log("I'm messing with you :P");
         // currentState = DialogueStates.Talking;
+    }
+
+    public void ProcessModifiers()
+    {
+
     }
 }
 

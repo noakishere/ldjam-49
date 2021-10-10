@@ -29,6 +29,14 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
     private Dialogue currentProcessDialogue;
 
+    private void Start() 
+    {
+        SetGold(GameManager.Instance.gameVariables.Find(x => x.VarName == "Gold").VarAmount);
+        SetWood(GameManager.Instance.gameVariables.Find(x => x.VarName == "Wood").VarAmount);
+        SetCloth(GameManager.Instance.gameVariables.Find(x => x.VarName == "Cloth").VarAmount);
+        SetMeat(GameManager.Instance.gameVariables.Find(x => x.VarName == "Meat").VarAmount);
+    }
+
     public void ProcessDialogueToUI(Dialogue dialogue)
     {
         currentProcessDialogue = dialogue;
@@ -56,7 +64,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         dialogueContainer.text = currentProcessDialogue.Text;
         ProcessOptions();
 
-        
+
         // DialogueManager.Instance.SetDialogueState(DialogueStates.Waiting);
         
         // StartCoroutine(AutoTypeText());
@@ -99,9 +107,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             }
 
             for(int i = 0; i < optionsLength; i++) // To adjust the options text
-            {
-                Debug.Log(optionsContainer.transform.childCount);
-                
+            {                
                 // To change the button's TMP Text to option's initial name
                 string optionText = currentProcessDialogue.Options[i].Text;
                 var toBeChanged = optionsContainer.transform.GetChild(i).GetComponentInChildren<TMP_Text>();
@@ -120,7 +126,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         }
         else
         {
-            Debug.Log($"It's empty {currentProcessDialogue.Options.Length}");
+            Debug.Log($"Option's empty {currentProcessDialogue.Options.Length}");
             optionsContainer.SetActive(false);
             continueButtonContainer.SetActive(true);
         }
@@ -156,7 +162,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         continueButtonContainer.SetActive(false);
     }
 
-#region Player UI Details Set Methods
+    #region Player UI Details Set Methods
     public void SetGold(int amount)
     {
         goldAmountContainer.text = $"Gold: {amount}";
@@ -177,9 +183,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         clothAmountContainer.text = $"Cloth: {amount}";
     }
-#endregion
+    #endregion
 
-// For now not used. I don't think it suits the project for now.
+
+
+    // For now not used. I don't think it suits the project for now.
     private IEnumerator AutoTypeText()
     {      
         foreach(char letter in currentProcessDialogue.Text)
