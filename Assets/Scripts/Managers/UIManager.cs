@@ -27,11 +27,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private TMP_Text meatAmountContainer;
     [SerializeField] private TMP_Text villageMoodAmountContainer;
 
-    private void Start() 
-    {
-
-    }
-
     private Dialogue currentProcessDialogue;
 
     public void ProcessDialogueToUI(Dialogue dialogue)
@@ -46,8 +41,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         SetMood();
     }
 
-#region Character Details UI Set Methods
-
     public void SetAvatar()
     {
         avatarContainer.sprite = currentProcessDialogue.Character.Avatar;
@@ -60,7 +53,13 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
         TurnOffContinueButton();
         TurnOffAllOptions();
 
-        StartCoroutine(AutoTypeText());
+        dialogueContainer.text = currentProcessDialogue.Text;
+        ProcessOptions();
+
+        
+        // DialogueManager.Instance.SetDialogueState(DialogueStates.Waiting);
+        
+        // StartCoroutine(AutoTypeText());
     }
 
     public void SetMood()
@@ -75,8 +74,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     {
         jobContainer.text = $"Job: {currentProcessDialogue.Character.Job}";
     }
-
-#endregion
 
     public void ProcessOptions()
     {
@@ -182,6 +179,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     }
 #endregion
 
+// For now not used. I don't think it suits the project for now.
     private IEnumerator AutoTypeText()
     {      
         foreach(char letter in currentProcessDialogue.Text)

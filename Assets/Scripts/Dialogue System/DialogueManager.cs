@@ -20,13 +20,14 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
     }
     public void SetDialogueState(DialogueStates state)
     {
+        Debug.Log("Hello from set dialogue");
         currentState = state;
     }
     
 
     private void Start() 
     {
-       dialogueIndex = 0;
+       dialogueIndex = 0; 
        currentState = DialogueStates.Waiting;
        Debug.Log(currentDialogueList);
     }
@@ -34,7 +35,7 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S) && currentState == DialogueStates.Waiting)
+        if (Input.GetKeyDown(KeyCode.S) /*&& currentState == DialogueStates.Waiting*/)
         {
             // ONLY FOR TESTING PURPOSES, THIS WILL NEED TO BE CLEANED AFTER
             if(dialogueIndex == currentDialogueList.Dialogues.Count)
@@ -54,7 +55,10 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         currentDialogue = currentDialogueList.Dialogues[dialogueIndex];
         dialogueIndex++;
         UIManager.Instance.ProcessDialogueToUI(currentDialogue);
-        currentState = DialogueStates.Talking;
+
+        // We don't really need states if we change text without autotype.. -> to fix
+        // Debug.Log("I'm messing with you :P");
+        // currentState = DialogueStates.Talking;
     }
 }
 
