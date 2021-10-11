@@ -12,6 +12,9 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
     [Tooltip("Must never be more than the options' length")]
     [SerializeField] private int dialogueIndex;
 
+    public PassableModifiers[,] currentDialogueOptions { get; private set; }
+
+
     [Header("Modify Dialogue State")]
     [SerializeField] private DialogueStates currentState;
     public DialogueStates CurrentState
@@ -25,10 +28,11 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 
     private void Start() 
     {
-        // Dictionary<string, int> gameVariables = new Dictionary<string, int>();
-        // gameVariables = new List<GameVariable>();
         dialogueIndex = 0; 
         currentState = DialogueStates.Waiting;
+
+        currentDialogueOptions = new PassableModifiers[3,3];
+
         Debug.Log(currentDialogueList);
     }
 
@@ -60,12 +64,4 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         // Debug.Log("I'm messing with you :P");
         // currentState = DialogueStates.Talking;
     }
-
-    public void ProcessModifiers()
-    {
-
-    }
 }
-
-
-

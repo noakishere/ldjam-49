@@ -27,7 +27,7 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private TMP_Text meatAmountContainer;
     [SerializeField] private TMP_Text villageMoodAmountContainer;
 
-    private Dialogue currentProcessDialogue;
+    [SerializeField] private Dialogue currentProcessDialogue;
 
     private void Start() 
     {
@@ -66,7 +66,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
 
 
         // DialogueManager.Instance.SetDialogueState(DialogueStates.Waiting);
-        
         // StartCoroutine(AutoTypeText());
     }
 
@@ -104,25 +103,25 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             else
             {
                 TurnOnOptions();
+                for(int i = 0; i < optionsLength; i++) // To adjust the options text
+                {                
+                    // To change the button's TMP Text to option's initial name
+                    string optionText = currentProcessDialogue.Options[i].Text;
+                    var toBeChanged = optionsContainer.transform.GetChild(i).GetComponentInChildren<TMP_Text>();
+                    
+                    toBeChanged.text = optionText;
+
+                    // To add a function to button's onClick
+                    /** MUST BE REWORKED IN CASE MODIFIER IS EMPTY **/
+                    Button btn = optionsContainer.transform.GetChild(i).GetComponent<Button>();
+                    int amountWeNeed = (int)currentProcessDialogue.Options[i].ModifierChangeAmount;
+                    
+                    Option currentOptionFunction = currentProcessDialogue.Options[i];
+                    btn.onClick.AddListener(delegate{currentOptionFunction.OnChoose();});
+                }
+                optionsContainer.SetActive(true);
+                TurnOffContinueButton();
             }
-
-            for(int i = 0; i < optionsLength; i++) // To adjust the options text
-            {                
-                // To change the button's TMP Text to option's initial name
-                string optionText = currentProcessDialogue.Options[i].Text;
-                var toBeChanged = optionsContainer.transform.GetChild(i).GetComponentInChildren<TMP_Text>();
-
-                toBeChanged.text = optionText;
-
-                // To add a function to button's onClick
-                /** MUST BE REWORKED IN CASE MODIFIER IS EMPTY **/
-                Button btn = optionsContainer.transform.GetChild(i).GetComponent<Button>();
-                int amountWeNeed = (int)currentProcessDialogue.Options[i].ModifierChangeAmount;
-                btn.onClick.AddListener(delegate{GameManager.Instance.GoldChange(amountWeNeed);});
-            }
-            optionsContainer.SetActive(true);
-            continueButtonContainer.SetActive(false);
-            // do something
         }
         else
         {
@@ -130,6 +129,11 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
             optionsContainer.SetActive(false);
             continueButtonContainer.SetActive(true);
         }
+    }
+
+    public void OptionsProcessor(string modifier)
+    {
+        // GameManager.Instance.gameVariables.Find(x => x.VarName == modifier).VarAmount;
     }
 
     public void TurnOnOptions()
@@ -163,6 +167,15 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     }
 
     #region Player UI Details Set Methods
+
+    public void UIChange()
+    {
+        SetGold(GameManager.Instance.gameVariables.Find(x => x.VarName == "Gold").VarAmount);
+        SetWood(GameManager.Instance.gameVariables.Find(x => x.VarName == "Wood").VarAmount);
+        SetMeat(GameManager.Instance.gameVariables.Find(x => x.VarName == "Wood").VarAmount);
+        SetCloth(GameManager.Instance.gameVariables.Find(x => x.VarName == "Cloth").VarAmount);
+    }
+
     public void SetGold(int amount)
     {
         goldAmountContainer.text = $"Gold: {amount}";

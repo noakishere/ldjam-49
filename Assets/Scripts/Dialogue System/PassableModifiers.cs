@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class PassableModifiers
 {
+
+    /* This could change to a state thing to better control the design */
     [SerializeField] private string modifierName;
     public string ModifierName
     {

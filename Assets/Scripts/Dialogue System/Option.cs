@@ -31,9 +31,14 @@ public class Option
         get { return passableModifiers; }
     }
 
-    private void OnChoose()
+    // This function processes all the modifiers when the button is chosen and call GameManager for changes.
+    public void OnChoose()
     {
-        Debug.Log($"I got chosen!");
-        GameEvents.Instance.GoldChangeTrigger();
+        for(int i = 0; i < passableModifiers.Length; i++)
+        {
+            Debug.Log($"This changes option {GameManager.Instance.gameVariables.Find(x => x.VarName == passableModifiers[i].ModifierName).VarName}");
+            GameManager.Instance.gameVariables.Find(x => x.VarName == passableModifiers[i].ModifierName).VarAmount += passableModifiers[i].ModifierAmount;
+        }
+        UIManager.Instance.UIChange();
     }
 }

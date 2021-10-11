@@ -5,13 +5,7 @@ using UnityEngine;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     [Header("Variable Controllers")]
-    public List<GameVariable> gameVariables;
-
-    // [SerializeField] private int goldAmt;
-    // public int GoldAmount
-    // {
-    //     get { return goldAmt; }
-    // }
+    public List<GameVariable> gameVariables; // Holds all the variables inside
 
     private void Update() 
     {
@@ -19,6 +13,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
             Debug.Log(gameVariables.Find(x => x.VarName == "Gold").VarAmount);
     }
 
+    // These are not necessary to keep until the end, but a good idea to hold around for the moment
     #region Resource methods
     public void GoldChange(int amount)
     {
@@ -30,27 +25,22 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         // int currentGold = gameVariables.Find(x => x.VarName == "Gold").VarAmount;
         gameVariables.Find(x => x.VarName == "").VarAmount += amount;
-        UIManager.Instance.SetGold(gameVariables.Find(x => x.VarName == "Wood").VarAmount);
+        UIManager.Instance.SetWood(gameVariables.Find(x => x.VarName == "Wood").VarAmount);
     }
     public void ClothChange(int amount)
     {
         // int currentGold = gameVariables.Find(x => x.VarName == "Gold").VarAmount;
         gameVariables.Find(x => x.VarName == "Cloth").VarAmount += amount;
-        UIManager.Instance.SetGold(gameVariables.Find(x => x.VarName == "Cloth").VarAmount);
+        UIManager.Instance.SetCloth(gameVariables.Find(x => x.VarName == "Cloth").VarAmount);
     }
     public void MeatChange(int amount)
     {
         // int currentGold = gameVariables.Find(x => x.VarName == "Gold").VarAmount;
         gameVariables.Find(x => x.VarName == "Meat").VarAmount += amount;
-        UIManager.Instance.SetGold(gameVariables.Find(x => x.VarName == "Meat").VarAmount);
+        UIManager.Instance.SetMeat(gameVariables.Find(x => x.VarName == "Meat").VarAmount);
     }
-    
-    #endregion
 
-    public void ProcessButtonFunction(Option option)
-    {
-        
-    }
+    #endregion
 
 
 }

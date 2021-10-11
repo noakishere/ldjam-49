@@ -37,16 +37,26 @@ MonoBehaviour:
       affectModifier: 
       amount: 25
       passableModifiers:
-      - modifierName: 
-        modifierAmount: 0
+      - modifierName: Gold
+        modifierAmount: 22
+      - modifierName: Wood
+        modifierAmount: 22
+      - modifierName: Cloth
+        modifierAmount: 22
     - text: 2
       affectModifier: 
       amount: 5
-      passableModifiers: []
+      passableModifiers:
+      - modifierName: Cloth
+        modifierAmount: 22
+      - modifierName: Meat
+        modifierAmount: 22
     - text: 3
       affectModifier: 
       amount: 5
-      passableModifiers: []
+      passableModifiers:
+      - modifierName: Wood
+        modifierAmount: 25
   - text: '
 
       This is a test text2
@@ -58,11 +68,17 @@ MonoBehaviour:
     - text: Option 1
       affectModifier: 353
       amount: 535235
-      passableModifiers: []
+      passableModifiers:
+      - modifierName: Gold
+        modifierAmount: 55
+      - modifierName: Wood 50
+        modifierAmount: 55
     - text: Option 2
       affectModifier: 353
       amount: 535235
-      passableModifiers: []
+      passableModifiers:
+      - modifierName: Wood
+        modifierAmount: 25
   - text: '
 
       This is a test text4
