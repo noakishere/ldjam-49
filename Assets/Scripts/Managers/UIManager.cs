@@ -12,6 +12,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private float waitBeforeNextDialogueSpeed;
 
     [Header("Character UI Section")]
+    [SerializeField] private GameObject characterUIContainer;
+    
     [SerializeField] private TMP_Text dialogueContainer;
     [SerializeField] private TMP_Text nameContainer;
     [SerializeField] private TMP_Text moodContainer;
@@ -19,6 +21,8 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
     [SerializeField] private Image avatarContainer;
     [SerializeField] private GameObject optionsContainer;
     [SerializeField] private GameObject continueButtonContainer;
+
+    public GameObject CharacterUIContainer { get { return characterUIContainer; } }
 
     [Header("Player UI Section")]
     [SerializeField] private TMP_Text goldAmountContainer;

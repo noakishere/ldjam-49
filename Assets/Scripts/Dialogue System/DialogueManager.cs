@@ -6,7 +6,7 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
 {
     // Dialogue Stuff
     [Header("Dialogue Section")]
-    [SerializeField] private DialogueSO currentDialogueList;
+    [SerializeField] public DialogueSO currentDialogueList;
     public Dialogue currentDialogue;
     
     [Tooltip("Must never be more than the options' length")]
