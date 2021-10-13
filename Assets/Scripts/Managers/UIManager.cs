@@ -118,7 +118,6 @@ public class UIManager : SingletonMonoBehaviour<UIManager>
                     // To add a function to button's onClick
                     /** MUST BE REWORKED IN CASE MODIFIER IS EMPTY **/
                     Button btn = optionsContainer.transform.GetChild(i).GetComponent<Button>();
-                    int amountWeNeed = (int)currentProcessDialogue.Options[i].ModifierChangeAmount;
                     
                     Option currentOptionFunction = currentProcessDialogue.Options[i];
                     btn.onClick.AddListener(delegate{currentOptionFunction.OnChoose();});

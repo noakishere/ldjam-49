@@ -64,4 +64,9 @@ public class DialogueManager : SingletonMonoBehaviour<DialogueManager>
         // Debug.Log("I'm messing with you :P");
         // currentState = DialogueStates.Talking;
     }
+
+    public void SetDialogueIndexZero()
+    {
+        dialogueIndex = 0;
+    }
 }

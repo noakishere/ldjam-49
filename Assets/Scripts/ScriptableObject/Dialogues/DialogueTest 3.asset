@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17aca66782ee1a14991c1112a4812d89, type: 3}
+  m_Name: DialogueTest 3
+  m_EditorClassIdentifier: 
+  dialogues:
+  - text: 'THIRD TEXT TEST BABYYYY
+
+      1This is a test text
+
+
+      Do you know
+      about me?
+
+      1This is a test text
+
+
+      Do you know about me?
+
+      1This
+      is a test text
+
+
+      Do you know about me?'
+    character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
+    options:
+    - text: 1 Text
+      passableModifiers:
+      - modifierName: Gold
+        modifierAmount: 22
+      - modifierName: Wood
+        modifierAmount: 22
+      - modifierName: Cloth
+        modifierAmount: 22
+    - text: 2
+      passableModifiers:
+      - modifierName: Cloth
+        modifierAmount: 22
+      - modifierName: Meat
+        modifierAmount: 22
+    - text: 3
+      passableModifiers:
+      - modifierName: Wood
+        modifierAmount: 25
+  - text: '
+
+      This is a test text2
+
+
+      Do you know about me?'
+    character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
+    options:
+    - text: Option 1
+      passableModifiers:
+      - modifierName: Gold
+        modifierAmount: 55
+      - modifierName: Wood 50
+        modifierAmount: 55
+    - text: Option 2
+      passableModifiers:
+      - modifierName: Wood
+        modifierAmount: 25
+  - text: '
+
+      This is a test text4
+
+
+      Do you know about me?'
+    character: {fileID: 11400000, guid: a882b81aa009ade42890d28364a3009f, type: 2}
+    options: []

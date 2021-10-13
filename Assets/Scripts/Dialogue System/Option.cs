@@ -11,20 +11,6 @@ public class Option
         get { return text; }
     }
 
-    // This might need to be changed
-    [SerializeField] private string affectModifier;
-    public string AffectModifier
-    {
-        get { return affectModifier; }
-    }
-
-    [Tooltip("Be mindful of the Min and Max rules")]
-    [SerializeField] private float amount;
-    public float ModifierChangeAmount
-    {
-        get { return amount; }
-    }
-
     [SerializeField] private PassableModifiers[] passableModifiers;
     public PassableModifiers[] PassableModifiers
     {
